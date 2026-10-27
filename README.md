@@ -8,9 +8,13 @@ Today this serves the simple **v1-era door page**: four doors — the current ha
 - **Phosphor two-tone icons** on the way in force
 - Commerce stays on the shop's existing portal; this site never takes a dollar
 
+## Live
+
+https://drasticstatic.github.io/taylordwraps-nextjs-preview/
+
 ## Stack
 
-Next.js (App Router, TypeScript) \u00b7 static export \u00b7 Phosphor Icons \u00b7 Anton + Archivo via next/font
+Next.js (App Router, TypeScript) · static export · Phosphor Icons · Anton + Archivo via next/font
 
 ---
 
