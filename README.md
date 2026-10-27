@@ -1,11 +1,11 @@
-# taylordwraps-nextjs-preview 🐇
+# taylordwraps-nextjs-preview
 
 The **Next.js era** of the [Taylor'd Wraps interactive showcase](https://drasticstatic.github.io/taylordwraps-public-preview/) — a wrap shop's website that transforms itself.
 
-Today this serves the simple **v1-era door page**: four doors — the current hand-built HTML preview, the wrap-anything visualizer, the time machine, and the rabbit hole that is being built down this corridor.
+Today this serves the simple **v1-era door page**: four doors — the current hand-built HTML preview, the wrap-anything visualizer, the time machine, and the rabbit hole that is being built down this corridor. A custom **404 lost page** is live too, on purpose.
 
 - **Static export** (`output: "export"`) — no payments, no storefront, fully static on GitHub Pages
-- **Phosphor two-tone icons** on the way in force
+- **Phosphor icons** throughout — no emoji in this era
 - Commerce stays on the shop's existing portal; this site never takes a dollar
 
 ## Live
