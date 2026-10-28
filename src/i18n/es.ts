@@ -1,0 +1,60 @@
+/**
+ * Spanish for every piece of chrome and arrival-kit text, keyed by the exact English (<T>{"…"}</T> and tr("…")).
+ * Change the English, update its line here. Drafted by Alfred (AI) 2026-10-27; a native read blesses a route in review.ts.
+ * Agreed words: src/i18n/glossary.md.
+ */
+export const es: Record<string, string> = {
+  // nav + chrome
+  "Why": "Por qué",
+  "The receipts": "Los recibos",
+  "Visualizer": "Visualizador",
+  "Start yours": "Empieza el tuyo",
+  "The shop": "El taller",
+  "The lab": "El laboratorio",
+  "Arrival kit": "Kit de llegada",
+  "The carport": "La cochera",
+  "Lost?": "¿Perdido?",
+  "Settings": "Ajustes",
+  "Open menu": "Abrir menú",
+  "Close menu": "Cerrar menú",
+  "Close settings": "Cerrar ajustes",
+  "Time machine": "Máquina del tiempo",
+  "Proposal sheet": "Hoja de presupuesto",
+  "The Car Show": "El Car Show",
+  "Skip to content": "Saltar al contenido",
+  "Theme": "Tema",
+  "Dark is the shop at night. Light is primer.": "Oscuro es el taller de noche. Claro es la imprimación.",
+  "Dark": "Oscuro",
+  "Light": "Claro",
+  "Language": "Idioma",
+  "Idioma de la bienvenida.": "Language of the welcome.",
+  "every era, one door each": "cada época, una puerta",
+  // footer
+  "Explore": "Explora",
+  "Elsewhere": "En otros lugares",
+  "The dev": "El desarrollador",
+  "Meet the dev": "Conoce al desarrollador",
+  "Site source": "Código del sitio",
+  "Labs experiments": "Experimentos del laboratorio",
+  "The shop’s own site": "El sitio del taller",
+  "Get Taylor'd.": "Hazlo Taylor'd.",
+  "By appointment. Call first; the kettle's usually on.": "Con cita. Llama antes; casi siempre hay café.",
+  "A drasticstatic labs showcase, built as a gift. Not the shop’s live site; nothing here implies endorsement until the shop says so. Vehicles shown are placeholder renders except the RC truck, a real photo used with permission.":
+    "Una muestra de drasticstatic labs, hecha como regalo. No es el sitio oficial del taller; nada aquí implica respaldo hasta que el taller lo diga. Los vehículos son renders de muestra, salvo la camioneta RC, una foto real usada con permiso.",
+  // arrival kit
+  "Welcome": "Bienvenidos",
+  "Pick your language. The whole site follows.": "Elige tu idioma. Todo el sitio te sigue.",
+  "A wrap shop in Warminster, PA. We design it, print it, lay it, and post-heat every edge so it stays.": "Un taller de vinilo en Warminster, PA. Lo diseñamos, lo imprimimos, lo instalamos y sellamos cada borde con calor para que dure.",
+  "Translation in review. Spot something off? Tell the shop and we’ll fix it before the vinyl prints.": "Traducción en revisión. ¿Algo suena raro? Díselo al taller y lo corregimos antes de imprimir el vinilo.",
+  "Before you arrive": "Antes de llegar",
+  "Wash the vehicle. No wax, no ceramic, no tire shine the week before. Bring the logo files you have, even if they’re rough; we build from there.": "Lava el vehículo. Sin cera, sin cerámico, sin abrillantador de llantas la semana anterior. Trae los archivos del logo que tengas, aunque sean toscos; de ahí construimos.",
+  "The flow": "El proceso",
+  "A call, a free quote, a design proof you approve before anything prints. Then we schedule the install. Nothing prints without your yes.": "Una llamada, un presupuesto gratis, una prueba de diseño que apruebas antes de imprimir nada. Luego agendamos la instalación. No se imprime nada sin tu sí.",
+  "Install day": "Día de instalación",
+  "Drop it off in the morning. Full wraps take one to three days depending on the body. Fresh film cures 48 to 72 hours: no washing, no pressure, no highway speeds the first day.": "Déjalo por la mañana. Un envoltorio completo toma de uno a tres días según el vehículo. El vinilo nuevo cura entre 48 y 72 horas: sin lavar, sin presión, sin autopista el primer día.",
+  "Find us": "Dónde estamos",
+  "126 Industrial Dr, Warminster, PA 18974. By appointment; call first. Street parking, roll-up doors, the dog will greet you.": "126 Industrial Dr, Warminster, PA 18974. Con cita; llama antes. Estacionamiento en la calle, portones enrollables, el perro te recibe.",
+  "Call the shop": "Llama al taller",
+  "Email the shop": "Escribe al taller",
+  "Open in Maps": "Abrir en Maps",
+};

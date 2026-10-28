@@ -1,0 +1,163 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* PSYCLONE rotates this registered property; every accent below is derived from it, so the whole
+   palette turns while fixed layers stay fixed (no filter on body, ever). */
+@property --psy-hue { syntax: "<angle>"; inherits: true; initial-value: 0deg; }
+
+:root {
+  /* light = primer: the color of an unwrapped shell */
+  --ink: #f1efea;
+  --panel: #ffffff;
+  --panel-2: #e8e5dd;
+  --txt: #141318;
+  --dim: #5b5a66;
+  --line: rgb(20 19 24 / 0.14);
+  --backing: #e8dcc0;
+  --psy-hue: 0deg;
+  --cut: 18px;
+}
+html.dark {
+  --ink: #0a0a0e;
+  --panel: #101017;
+  --panel-2: #15151e;
+  --txt: #ececf1;
+  --dim: #9a9aa8;
+  --line: rgb(255 255 255 / 0.1);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-txt: var(--txt);
+  --color-dim: var(--dim);
+  --color-line: var(--line);
+  --color-backing: var(--backing);
+  --color-violet: oklch(68% 0.22 calc(305deg + var(--psy-hue)));
+  --color-magenta: oklch(66% 0.24 calc(352deg + var(--psy-hue)));
+  --color-teal: oklch(80% 0.14 calc(182deg + var(--psy-hue)));
+  --color-amber: oklch(85% 0.16 calc(86deg + var(--psy-hue)));
+  --font-display: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-mono: var(--font-jbmono), ui-monospace, Menlo, monospace;
+  --breakpoint-nav: 900px;
+}
+
+@supports not (color: oklch(0% 0 0)) {
+  @theme inline {
+    --color-violet: #a855f7;
+    --color-magenta: #ec4899;
+    --color-teal: #2dd4bf;
+    --color-amber: #fbbf24;
+  }
+}
+
+html.psyclone { animation: psy-cycle 9s linear infinite; }
+@keyframes psy-cycle { to { --psy-hue: 360deg; } }
+
+@layer base {
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--ink);
+  color: var(--txt);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  padding-bottom: 46px; /* room for the fixed ticker */
+  overflow-x: clip;
+}
+::selection { background: var(--color-teal); color: #0a0a0e; }
+:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 3px; border-radius: 2px; }
+img, canvas, svg, video { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+p { max-width: 68ch; }
+}
+
+@layer components {
+/* ---- type ---- */
+.display { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.005em; line-height: 0.92; text-wrap: balance; }
+.lede { font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.55; color: var(--dim); max-width: 56ch; }
+.readout { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+.film-text {
+  background: linear-gradient(100deg, var(--color-violet), var(--color-magenta) 48%, var(--color-teal));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ---- the panel: one cut corner, like a blade's cut line. The signature shape; nothing else is a card. ---- */
+.panel {
+  position: relative;
+  background: var(--panel);
+  clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.panel-2 { background: var(--panel-2); }
+.primer { background: repeating-linear-gradient(135deg, var(--panel-2) 0 6px, var(--panel) 6px 12px); }
+
+/* hazard seam between levels: the shop floor's tape line, as a hairline */
+.seam { height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 14px, transparent 14px 24px); }
+
+/* doodle underline: a hand-drawn squiggle that draws itself on hover and stays on the active section */
+.doodle { position: relative; display: inline-block; padding-bottom: 6px; }
+.doodle svg { position: absolute; left: -4%; right: -4%; bottom: -2px; width: 108%; height: 10px; overflow: visible; pointer-events: none; }
+.doodle svg path { fill: none; stroke: var(--color-teal); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+.doodle:hover svg path, .doodle:focus-visible svg path, .doodle.here svg path { stroke-dashoffset: 0; }
+.doodle.here { color: var(--txt); }
+
+/* peel button: a vinyl corner lifts while hovered and uncovers a message under the film */
+.peel {
+  --peel-fg: #0a0a0e;
+  position: relative; isolation: isolate; overflow: hidden;
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.95rem 1.4rem; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.01em;
+  color: var(--peel-fg);
+  background: linear-gradient(100deg, var(--color-violet), var(--color-magenta) 48%, var(--color-teal));
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  transition: transform 0.25s;
+}
+.peel.ghost { background: transparent; color: var(--txt); box-shadow: inset 0 0 0 1px var(--line); }
+.peel .peel-msg {
+  position: absolute; inset: 0; display: grid; place-items: center; padding: 0 1rem;
+  background: var(--backing); color: #3b2f1a; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; text-align: center;
+  transform: translateY(102%); transition: transform 0.35s 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.peel .peel-label { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 0.55rem; transition: opacity 0.3s 0.9s; }
+.peel::after {
+  content: ""; position: absolute; right: -1px; top: -1px; width: 28px; height: 28px; z-index: 2;
+  background: linear-gradient(225deg, var(--backing) 0 48%, #c9b892 48% 52%, transparent 52%);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  transform-origin: 100% 0; transform: scale(0.5);
+  transition: transform 0.3s;
+}
+@media (hover: hover) {
+  .peel:hover { transform: translateY(-1px); }
+  .peel:hover::after { animation: peel-breathe 1.4s ease-in-out infinite alternate; }
+  .peel:hover .peel-msg { transform: translateY(0); }
+  .peel:hover .peel-label { opacity: 0; }
+}
+@keyframes peel-breathe { from { transform: scale(0.9); } to { transform: scale(1.6); } }
+
+/* ticker */
+.ticker-track { display: flex; width: max-content; animation: tick 28s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* a tool in hand: the cursor becomes the tool everywhere except over things you can click */
+html[data-tool]:not([data-tool="none"]) body { cursor: none; user-select: none; -webkit-user-select: none; }
+html[data-tool]:not([data-tool="none"]) :is(a, button, input, textarea, select, label, [role="toolbar"], [role="dialog"], [role="slider"], canvas[data-engine], [data-stage]) { cursor: auto; }
+
+}
+
+/* sr-only helper */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.psyclone { animation: none; --psy-hue: 40deg; }
+  .ticker-track { animation: none; }
+  .peel:hover::after { animation: none; transform: scale(1.3); }
+  *, *::before, *::after { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+}
+@media print { .no-print { display: none !important; } body { padding-bottom: 0; } }

@@ -1,4 +1,8 @@
-name: Build and Deploy to GitHub Pages
+name: 🚗 Build and deploy THE CARPORT to GitHub Pages
+
+# This repo is a living public lane mirrored from the private drasticstatic/taylordwraps (carport/).
+# Edits land there; this workflow builds the static export and publishes it.
+# BASE_PATH: repo variable (Settings → Variables). Defaults to this repo's Pages subpath.
 
 on:
   push:
@@ -17,17 +21,34 @@ concurrency:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      NEXT_PUBLIC_BASE_PATH: ${{ vars.BASE_PATH || '/taylordwraps-nextjs-preview' }}
+      NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL || 'https://drasticstatic.github.io' }}
+      NEXT_PUBLIC_LANE: carport
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - run: npm install
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
       - run: npm run build
+      - name: Smoke test (when present)
+        run: |
+          if [ -f playwright.config.ts ]; then
+            npx playwright install --with-deps chromium
+            npm run test:smoke
+          else
+            echo "no smoke tests yet"
+          fi
       - uses: actions/configure-pages@v5
         with:
           enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
-      - uses: actions/deploy-pages@v4
+      - id: deployment
+        uses: actions/deploy-pages@v4

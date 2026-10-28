@@ -1,0 +1,1 @@
+export const MYSTERY_QUEUE = ["a mailbox.", "a grand piano.", "a mobility scooter.", "a kayak.", "a porta-john (we said what we said).", "a casket. premium sendoff package.", "a hot tub.", "a church van (no further questions)."];

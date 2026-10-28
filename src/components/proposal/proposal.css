@@ -1,0 +1,23 @@
+/* Taylor's own brand for the printed sheet: raspberry, black, white, Helvetica. Scoped to .sheet; the page chrome stays the carport's. */
+.sheet { --rasp: #b00069; --paper: #ffffff; --inkp: #111111; --rule: #e6e6e6; background: var(--paper); color: var(--inkp); font-family: Helvetica, Arial, sans-serif; padding: 32px 36px; box-shadow: 0 10px 40px rgb(0 0 0 / 0.25); }
+.sheet * { color: inherit; }
+.sheet .bar { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 3px solid var(--rasp); padding-bottom: 10px; }
+.sheet .bar b { font-size: 22px; letter-spacing: 0.02em; }
+.sheet .bar span { font-size: 12px; color: #555; }
+.sheet h2 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rasp); margin: 24px 0 6px; }
+.sheet .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; font-size: 14px; }
+.sheet table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+.sheet td { padding: 8px 4px; border-bottom: 1px solid var(--rule); }
+.sheet td.amt { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sheet tr.tot td { border-bottom: 0; border-top: 2px solid var(--inkp); font-weight: 700; font-size: 16px; }
+.sheet .terms { font-size: 12px; line-height: 1.5; color: #444; white-space: pre-wrap; }
+.sheet .sig { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 36px; font-size: 12px; }
+.sheet .sig div { border-top: 1px solid var(--inkp); padding-top: 6px; }
+.sheet .foot { margin-top: 28px; font-size: 11px; color: #777; }
+@media print {
+  nav, footer, .ticker, .no-print, [data-depth-meter] { display: none !important; }
+  body { background: #fff !important; padding: 0 !important; }
+  .sheet { box-shadow: none; padding: 0; }
+  .proposal-form { display: none !important; }
+  @page { margin: 16mm; }
+}
