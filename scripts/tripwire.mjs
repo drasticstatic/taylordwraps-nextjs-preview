@@ -3,7 +3,7 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 const OUT = "out";
-const PRIVATE_PATH = /(^|\/)(AGENT-SYNC|logs|proposals|handoffs|imports|backups|setup|specs|graphify-out)(\/|$)|(^|\/)(\.env(\..*)?|.*\.pem|.*\.key|.*\.p12|id_rsa.*|id_ed25519.*|.*rate-?card.*|.*\.local\.(json|ts|js))$/i;
+const PRIVATE_PATH = /(^|\/)(AGENT[-]SYNC|logs|proposals|handoffs|imports|backups|setup|specs|graphify-out)(\/|$)|(^|\/)(\.env(\..*)?|.*\.pem|.*\.key|.*\.p12|id_rsa.*|id_ed25519.*|.*rate-?card.*|.*\.local\.(json|ts|js))$/i;
 const SECRETS = [/-----BEGIN (RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----/, /\bgh[pousr]_[A-Za-z0-9]{30,}\b/, /\bgithub_pat_[A-Za-z0-9_]{40,}\b/, /\bAKIA[0-9A-Z]{16}\b/, /\bxox[abprs]-[A-Za-z0-9-]{10,}\b/, /\bsk-[A-Za-z0-9]{20,}\b/];
 const EMOJI = /(?![©®™])\p{Extended_Pictographic}/u; // text symbols like © are fine; pictographs are not
 const PRICE = /"(price|rate|amount)"\s*:\s*[1-9]\d{2,}/;
